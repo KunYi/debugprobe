@@ -75,13 +75,20 @@ void probe_assert_reset(bool state)
 {
 #if defined(PROBE_PIN_RESET)
     /* Change the direction to out to drive pin to 0 or to in to emulate open drain */
-    gpio_set_dir(PROBE_PIN_RESET, state == 0 ? GPIO_OUT : GPIO_IN);
+    if (state == 0) {
+        gpio_set_dir(PROBE_PIN_RESET, GPIO_OUT);
+        gpio_put(PROBE_PIN_RESET, state);
+    }
+    else {
+        gpio_set_dir(PROBE_PIN_RESET, GPIO_IN);
+    }
 #endif
 }
 
 int probe_reset_level(void)
 {
 #if defined(PROBE_PIN_RESET)
+    gpio_set_dir(PROBE_PIN_RESET, GPIO_IN);
     return gpio_get(PROBE_PIN_RESET);
 #else
     return 0;
