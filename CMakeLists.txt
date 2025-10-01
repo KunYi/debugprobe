@@ -22,6 +22,7 @@ add_executable(debugprobe
         src/get_serial.c
         src/sw_dp_pio.c
         src/tusb_edpt_handler.c
+        src/jtag.c
 )
 
 target_sources(debugprobe PRIVATE
@@ -43,6 +44,7 @@ target_compile_options(debugprobe PRIVATE -Wall)
 pico_generate_pio_header(debugprobe ${CMAKE_CURRENT_LIST_DIR}/src/probe.pio)
 pico_generate_pio_header(debugprobe ${CMAKE_CURRENT_LIST_DIR}/src/probe_oen.pio)
 pico_generate_pio_header(debugprobe ${CMAKE_CURRENT_LIST_DIR}/src/ws2812.pio)
+pico_generate_pio_header(debugprobe ${CMAKE_CURRENT_LIST_DIR}/src/jtag.pio)
 
 target_include_directories(debugprobe PRIVATE src)
 

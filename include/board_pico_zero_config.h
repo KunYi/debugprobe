@@ -32,8 +32,15 @@
 // PIO config
 #define PROBE_SM 0
 #define PROBE_PIN_OFFSET 2
-#define PROBE_PIN_SWCLK (PROBE_PIN_OFFSET + 0) // 2
-#define PROBE_PIN_SWDIO (PROBE_PIN_OFFSET + 1) // 3
+#define PROBE_PIN_SWCLK  (PROBE_PIN_OFFSET + 0) // 2
+#define PROBE_PIN_SWDIO  (PROBE_PIN_OFFSET + 1) // 3
+
+#define PROBE_PIN_TCK    PROBE_PIN_SWCLK        // 2
+#define PROBE_PIN_TMS    PROBE_PIN_SWDIO        // 3
+#define PROBE_PIN_TDI    (PROBE_PIN_OFFSET + 2) // 4
+#define PROBE_PIN_TDO    (PROBE_PIN_OFFSET + 3) // 5
+#define PROBE_PIN_nTRST  (PROBE_PIN_OFFSET + 4) // 6
+#define PROBE_PIN_nRESET (PROBE_PIN_OFFSET + 5) // 7
 
 // Target reset config
 #if false
@@ -41,10 +48,12 @@
 #endif
 
 // UART config
-#define PROBE_UART_TX 4
-#define PROBE_UART_RX 5
+#define PROBE_UART_TX 8
+#define PROBE_UART_RX 9
 #define PROBE_UART_INTERFACE uart1
 #define PROBE_UART_BAUDRATE 115200
+
+// SWO UART Baud, N, 8, 1
 
 /* LED config - some or all of these can be omitted if not used */
 #define PROBE_WS2812_LED
